@@ -1,0 +1,101 @@
+{
+    "id": 6138,
+    "title": "test",
+    "lat": null,
+    "lng": null,
+    "url": "https://gis.aiesec.org/v2/opportunities/6138",
+    "status": "draft",
+    "current_status": "draft",
+    "location": null,
+    "city": null,
+    "programmes": {
+        "id": 5,
+        "short_name": "GE"
+    },
+    "sub_product": {
+        "id": 8,
+        "name": "Information Technology",
+        "programmes": {
+            "id": 5,
+            "short_name": "GE"
+        }
+    },
+    "applications_count": 0,
+    "is_favourited": false,
+    "branch": {
+        "id": 3081,
+        "name": "AIESEC International",
+        "scope": null,
+        "status": "pending",
+        "organisation": {
+            "id": 1619,
+            "name": "AIESEC International",
+            "meta": {
+                "video_url_id": "",
+                "opportunity_count": "3"
+            },
+            "url": "https://gis.aiesec.org/v2/organisations/1619",
+            "website": "aiesec.org",
+            "summary": "Omar bjsdbajkd",
+            "is_gep": false,
+            "registration_no": null,
+            "experience_count": null,
+            "year_of_creation": 1948,
+            "contact_info": {
+                "website": null,
+                "email": null,
+                "phone": "01273555230",
+                "facebook": "",
+                "twitter": "",
+                "instagram": "",
+                "linkedin": "",
+                "country_code": "20"
+            },
+            "profile_photo_urls": {
+                "original": "https://s3-eu-west-1.amazonaws.com/gis-development/companies/profile_photos/000/001/619/original/540250..jpg?1505910639",
+                "medium": "https://s3-eu-west-1.amazonaws.com/gis-development/companies/profile_photos/000/001/619/medium/540250..jpg?1505910639",
+                "thumb": "https://s3-eu-west-1.amazonaws.com/gis-development/companies/profile_photos/000/001/619/thumb/540250..jpg?1505910639"
+            },
+            "cover_photo_urls": "https://cdn-expa.aiesec.org/gis-img/missing_company_cover.png"
+        },
+        "address_info": {
+            "address_1": null,
+            "address_2": null,
+            "postcode": null,
+            "city": null,
+            "country": null,
+            "city_name": null,
+            "country_name": null
+        },
+        "billing_address": null,
+        "url": "https://gis.aiesec.org/v2/organisations//branches/3081"
+    },
+    "duration_min": null,
+    "duration_max": null,
+    "duration": 6,
+    "project_duration": 2,
+    "applications_close_date": "2018-05-17T00:00:00.000Z",
+    "earliest_start_date": "2018-05-17T00:00:00.000Z",
+    "latest_end_date": "2018-06-28T00:00:00.000Z",
+    "office": {
+        "id": 2128,
+        "name": "Indiana State",
+        "full_name": "AIESEC in Indiana State",
+        "email": null,
+        "tag": "LC",
+        "parent_id": 1621,
+        "signup_link": null,
+        "country": "United States",
+        "url": "https://gis.aiesec.org/v2/committees/2128"
+    },
+    "applied_to": false,
+    "sdg_info": null,
+    "profile_photo_urls": {
+        "original": "https://cdn-expa.aiesec.org/gis-img/missing_profile_t.svg",
+        "medium": "https://cdn-expa.aiesec.org/gis-img/missing_profile_t.svg",
+        "thumb": "https://cdn-expa.aiesec.org/gis-img/missing_profile_t.svg"
+    },
+    "cover_photo_urls": "https://cdn-expa.aiesec.org/gis-img/ge_default.png",
+    "created_at": "2018-05-17T12:00:14Z",
+    "updated_at": "2018-05-17T12:00:14Z"
+}

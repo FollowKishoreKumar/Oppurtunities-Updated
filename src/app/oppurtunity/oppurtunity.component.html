@@ -1,0 +1,162 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Oppurtunities</h1>
+    <p>Place to add Oppurtunities </p>
+  </div>
+  <form #oppurtunity="ngForm" (ngSubmit)="saveDetails(oppurtunity.value)">
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="title">Title</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="text" maxlength="100" class="form-control" id="title" name="title" [(ngModel)]="title" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="applications_close_date">Applications Close Date</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="date" required class="form-control" id="applications_close_date" [min]="getThirty()" [max]="getNinety()" name="applications_close_date"
+          [(ngModel)]="applications_close_date">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="earliest_start_date">Earliest Start Date</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="date" required class="form-control" id="earliest_start_date" name="earliest_start_date" [(ngModel)]="earliest_start_date">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="latest_end_date">Latest End Date</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="date" required class="form-control" id="latest_end_date" name="latest_end_date" [(ngModel)]="latest_end_date">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="title">Description</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="title">City</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="text" class="form-control" id="city" name="city" [(ngModel)]="city" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label>Backgrounds</label>
+      </div>
+
+      <div class="col-md-10">
+        <div class="well">
+          <div class="row">
+            <div class="col-md-3 text-left">
+              <textarea [(ngModel)]="backgrounds" (keydown)="enterPressed($event)" name="backgrounds" required id="backgrounds" placeholder="Provide multiple values in new lines (at least one required)."></textarea>
+            </div>
+            <div class="col-md-3 text-right">
+              <span class="required" title="Indicates this is a required Field"> * </span>
+              <label for="backgroundOptions">Options</label>
+            </div>
+            <div class="col-md-2 text-left">
+              <select multiple="multiple" required [(ngModel)]="backgroundOptions" name="backgroundOptions">
+                <option *ngFor="let data of backgroundObject" value="{{data.value}}">{{data.label}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label>Skills</label>
+      </div>
+
+      <div class="col-md-10">
+        <div class="well">
+          <div class="row">
+            <div class="col-md-3 text-left">
+              <textarea [(ngModel)]="skills" name="skills" required id="skills" placeholder="Provide multiple values in new lines (at least one required)."></textarea>
+            </div>
+            <div class="col-md-3 text-right">
+              <span class="required" title="Indicates this is a required Field"> * </span>
+              <label for="skillsOptions">Options</label>
+            </div>
+            <div class="col-md-2 text-left">
+              <select multiple="multiple" required [(ngModel)]="skillsOptions" name="skillsOptions">
+                <option *ngFor="let data of skillsObject" value="{{data.value}}">{{data.label}}</option>
+              </select>
+            </div>
+            <div class="col-md-2 text-right">
+              <span class="required" title="Indicates this is a required Field"> * </span>
+              <label for="skillLevel">Level</label>
+            </div>
+            <div class="col-md-2 text-left">
+              <select multiple="multiple" required [(ngModel)]="skillLevel" name="skillLevel">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="title">Selection Process</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="text" class="form-control" id="selection_process" name="selection_process" [(ngModel)]="selection_process" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2 text-right">
+        <span class="required" title="Indicates this is a required Field"> * </span>
+        <label for="title">Salary</label>
+      </div>
+      <div class="col-md-3 text-left">
+        <input type="number" class="form-control" id="salary" name="salary" [(ngModel)]="salary" required>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="center">
+      <!-- <button type="submit" [disabled]="!oppurtunity.form.valid" class="btn btn-success center">Create</button> -->
+      <button type="submit" class="btn btn-success center">Create</button>
+
+    </div>
+  </form>
+</div>
