@@ -48,23 +48,55 @@ export class OppurtunityComponent implements OnInit {
   ]
   skillsOptions: string;
   skillLevel: string;
-
+  skillCollection: any[] = [];
   selection_process: string;
   salary: number;
 
 
   thirtyDays: string;
   ninetyDays: string;
-  //role_info.city
   oppurtunities: Oppurtunities = new Oppurtunities();
 
   oppurtunityID: Number = 6124;
   response: any;
+  oppurtunity: any;
 
-  skillData: any;
-  backgroundData: any;
-  i: number = 0;
+  skillData: any = {
+    "id": "",
+    "option": "required",
+    "level": "0"
+  }
+
+  backgroundCollection: any[] = [];
+  backgroundData: any = {
+    "id": "",
+    "option": "required",
+    "level": "0"
+  }
   data: any;
+
+
+  skillsPresent: any;
+  backgroundsPresent: any;
+  setLimit: boolean;
+
+  postOppurtunity:boolean;
+  viewOppurtunity:boolean;
+
+
+
+  //Grid Contents
+  columnDefs = [
+    {headerName: 'Title', field: 'title' },
+    {headerName: 'Applications Close Date', field: 'applications_close_date' },
+    {headerName: 'Earliest Start Date', field: 'earliest_start_date'},
+    {headerName: 'City', field: 'city'},
+    {headerName: 'Duration', field: 'duration'},
+    {headerName: 'Applications Count', field: 'applications_count'},
+];
+
+rowData : any;
+
   constructor(private _service: OppurtunityService) { }
 
   ngOnInit() {
@@ -73,12 +105,17 @@ export class OppurtunityComponent implements OnInit {
 
     this._service.getSkills()
       .subscribe(data => {
-        console.log(data);
+        this.skillsPresent = data
       })
 
     this._service.getBackgrounds()
       .subscribe(data => {
-        console.log(data);
+        this.backgroundsPresent = data;
+      })
+
+    this._service.getOppurtunity()
+      .subscribe(data => {
+        this.rowData = data.data;
       })
 
   }
@@ -94,37 +131,81 @@ export class OppurtunityComponent implements OnInit {
   }
 
   //Method to Capture Enter event in Backgrounds Field 
-  enterPressed(value) {
-    console.log(value)
-    this.backgroundData = _.split(this.backgrounds, /\r|\r\n|\n/);
-    if (value.keyCode == 13) {
-      this.i++;
-      // console.log("From 1st Loop" + this.i);
-      if (this.i > 2 && this.backgroundData.length > 2) {
-        return false;
-      }
-      else {
-        return true;
-      }
+
+  // enterPressed(value) {
+  //   console.log(value)
+  //   this.backgroundData = _.split(this.backgrounds, /\r|\r\n|\n/);
+  //   if (value.keyCode == 13) {
+  //     this.i++;
+  //     if (this.i > 2 && this.backgroundData.length > 2) {
+  //       return false;
+  //     }
+  //     else {
+  //       return true;
+  //     }
+  //   }
+  //   else {
+  //     if (this.i >= 3) {
+  //       this.i--;
+  //     }
+  //     return true;
+  //   }
+  // }
+
+
+  //Method to set maximum 3 Backgrounds
+  onBackgroundSelect() {
+    if (this.backgrounds.length >= 3) {
+      alert(" Maximum of three Backgrounds can only be set");
+      // this.setLimit = true;
     }
     else {
-      if (this.i >= 3) {
-        this.i--;
-      }
-      // console.log("From 2nd Loop" + this.i)
-      return true;
+      // this.setLimit = false;
     }
   }
 
+  //Methods to set forms
+post()
+{
+  this.postOppurtunity = true;
+  this.viewOppurtunity = false;
+}
+
+view(){
+  this.postOppurtunity = false;
+  this.viewOppurtunity = true;
+}
   //Method to PATCH the data to the server
   saveDetails(value) {
+
+    this.backgrounds.forEach(element => {
+      this.backgroundData = {
+        "id": element,
+        "option": "required",
+        "level": "0"
+      }
+      this.backgroundCollection.push(this.backgroundData)
+    });
+
+
+    console.log(this.skills);
+    this.skills.forEach(element => {
+      this.skillData = {
+        "id": element,
+        "option": "required",
+        "level": "0"
+      }
+      this.skillCollection.push(this.skillData)
+    });
+
+
     this.oppurtunities.title = value.title;
     this.oppurtunities.applications_close_date = value.applications_close_date;
     this.oppurtunities.earliest_start_date = value.earliest_start_date;
     this.oppurtunities.latest_end_date = value.latest_end_date;
     this.oppurtunities.description = value.description;
-    this.skillData = _.split(value.skills, /\r|\r\n|\n/);
-    this.oppurtunities.skills = this.skillData;
+    // this.skillData = _.split(value.skills, /\r|\r\n|\n/);
+    this.oppurtunities.skills = this.skillCollection;
     this.oppurtunities.selection_process = value.selection_process;
     this.oppurtunities.role_info.city = value.city
 
@@ -133,8 +214,8 @@ export class OppurtunityComponent implements OnInit {
       "opportunity": this.oppurtunities
     }
 
-    this.backgroundData = _.split(value.backgrounds, /\r|\r\n|\n/);
-    this.oppurtunities.backgrounds = this.backgroundData;
+    // this.backgroundData = _.split(value.backgrounds, /\r|\r\n|\n/);
+    this.oppurtunities.backgrounds = this.backgroundCollection;
     this.backgroundOptions = value.backgroundOptions;
     this.skillsOptions = value.skillsOptions;
 
@@ -144,7 +225,11 @@ export class OppurtunityComponent implements OnInit {
     this._service.postOppurtunity(this.data, this.oppurtunityID)
       .subscribe(data => {
         this.response = data
-      })
+        alert("Your Request was Posted Successfully :) ")
+      },
+        error => {
+          alert(JSON.stringify(error))
+        })
 
   }
 

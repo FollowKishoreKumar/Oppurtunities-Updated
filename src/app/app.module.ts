@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { OppurtunityComponent } from './oppurtunity/oppurtunity.component';
 import { OppurtunityService } from './oppurtunity.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([])
   ],
   providers: [OppurtunityService],
   bootstrap: [AppComponent]
